@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link href="./assets/style/mini-dark.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RealVideoChat</title>
   </head>
   <body>
@@ -9,7 +11,19 @@
     <ul>
       <li><p id="message">.................</p></li>
     </ul>
+    <!-- Just a bunch of buttons for testing -->
+    <button>Button</button>
+    <input type="button" value="Button" />
+    <input type="reset" value="Button" />
+    <input type="submit" value="Button" />
+    <a href="#" class="button">Link</a>
+    <a href="#" role="button">Link</a>
+    <label class="button">Label</label>
+    <label role="button">Label</label>
+    <!-- That's a tooltip to indicate what's happen -->
+    <span class="toast" style="display:none"></span>
   </body>
   <script src="//cdn.ably.com/lib/ably.min-1.js"></script>
+  <script src="./assets/app/jquery/jquery-1.12.4.min.js"></script>
   <script type="module" src="./assets/app/app.js"></script>
 </html>

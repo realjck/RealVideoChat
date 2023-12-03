@@ -9,9 +9,15 @@ const loadEnv = (callback) => {
         .then(data => {
             const envVariables = data.split('\n');
             envVariables.forEach(variable => {
-                const [name, value] = variable.split('=');
+                let [name, value] = variable.split('=');
+                value = value.trim();
                 if (name && value) {
-                    window[name.trim()] = value.trim();
+                    if (value.toLowerCase() == 'true'){
+                        value = true;
+                    }  else if (value.toLowerCase() == 'false'){
+                        value = false;
+                    }
+                    window[name.trim()] = value;
                 }
             });
             callback();

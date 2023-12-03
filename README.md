@@ -1,4 +1,4 @@
-# Real Video Chat
+# real-video-chat
 
 ## Chat room for watching `.mp4` on internet
 
