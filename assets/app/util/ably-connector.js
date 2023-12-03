@@ -24,8 +24,8 @@ AblyConnector.connect = async (apiKey, channel, callback) => {
  * @param {string} eventName 
  * @param {function} fn 
  */
-AblyConnector.addListener = async (eventName, fn) => {
-    await _channel.subscribe(eventName, (message) => {
+AblyConnector.addListener = (eventName, fn) => {
+    _channel.subscribe(eventName, (message) => {
         fn(message.data);
     });
 }
@@ -35,8 +35,8 @@ AblyConnector.addListener = async (eventName, fn) => {
  * @param {string} eventName 
  * @param {object} object 
  */
-AblyConnector.talk = async (eventName, object) => {
-    await _channel.publish(eventName, object);
+AblyConnector.talk = (eventName, object) => {
+    _channel.publish(eventName, object);
 }
 
 export {AblyConnector};

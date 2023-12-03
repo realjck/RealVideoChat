@@ -20,7 +20,7 @@ loadEnv(() => {
   if (window.DEV){
     launchApp();
   } else {
-    AblyConnector.connect(window.API_KEY, "RVC", launchApp);
+    AblyConnector.connect(window.API_KEY, 'RealVideoChat', launchApp);
   }
 });
 
