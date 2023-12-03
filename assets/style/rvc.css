@@ -1,0 +1,22 @@
+/*
+    Style for RealVideoChat
+    overides mini-dark.css
+*/
+
+:root {
+    --universal-border-radius: 0.75rem;
+}
+
+/* Better modals: */
+.card {
+    border: 25px solid var(--card-back-color);
+    border-radius: 25px;
+    overflow: visible !important;
+}
+#dialog-title {
+    border: 0;
+    width: 85%;
+}
+input {
+    width: 100%;
+}
