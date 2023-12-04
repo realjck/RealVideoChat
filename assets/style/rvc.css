@@ -7,11 +7,15 @@
     --universal-border-radius: 0.75rem;
 }
 
-/* Better modals: */
+/* Better modal: */
 .card {
+    position: fixed;
+    overflow: visible !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: 25px solid var(--card-back-color);
     border-radius: 25px;
-    overflow: visible !important;
 }
 #dialog-title {
     border: 0;
@@ -19,4 +23,18 @@
 }
 input {
     width: 100%;
+}
+
+/* Jquery-form */
+.invalid {
+    border-color: var(--input-invalid-color);
+}
+
+.small {
+    font-size: 0.7em;
+}
+
+/* Util: */
+.center {
+    text-align: center;
 }
