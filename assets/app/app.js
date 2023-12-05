@@ -5,13 +5,19 @@ import { View } from "./view.js";
 
 /**
  * MAIN APP
+ * --------
+ * 'Feats*:' (*names of listeners for featured actions)
+ * ----------------------------------------------------
+ * EVENT NAME(:TYPE) -> ACTION WHEN RECIEVED
+ * - hello(:user) -> Register user, say welcome
+ * - welcome(:user) -> Register user
  */
 
 // RealVideoChat
 const RVC = {
   currentChannel : '',
   user : {
-    uuid : "",
+    uuid : Date.now() + '-' + Math.round(Math.random()*999999999999999),
     name : "",
     color : 0
   },
@@ -35,7 +41,7 @@ function askRoom() {
     if (window.DEV){
       askUserName();
     } else {
-      AblyConnector.connect(window.API_KEY, RVC.currentChannel, launchApp);
+      AblyConnector.connect(window.API_KEY, RVC.currentChannel, askUserName);
     }
   });
 }
@@ -56,7 +62,6 @@ function askUserName() {
     bt[0].n = i;
     bt.css("background-color", RVC.usercolors[i]);
     bt.on("click", (e) => {
-      console.log($(e.currentTarget).index);
       RVC.user.color = $(e.currentTarget)[0].n;
       activeBtColor();
     });
@@ -74,5 +79,49 @@ function askUserName() {
   JQueryForm.init('username-card', [['username', /^\w+$/]], (data) => {
     RVC.user.name = data.username;
     $("#modal-username-dialog").hide();
+    makePresentation();
   });
+}
+
+function makePresentation(){
+  // user say hello
+  AblyConnector.say('hello', RVC.user);
+
+  // he registers the users saying welcome in return
+  AblyConnector.addListener('welcome', (data) => {
+    if (!RVC.users.find(u => u.id == data.user.id)){
+      addOtherUser(data.user);
+    }
+  });
+
+  // then he registers new users, and greets them with a welcome
+  AblyConnector.addListener('hello', (data) => {
+
+    addOtherUser(data.user);
+
+    AblyConnector.say('welcome', user);
+
+    // fun message
+    const fun_msg = [
+' pop into the chat',
+' swoop into the conversation',
+' breeze into the room',
+' dive into the chat',
+' glide into the conversation',
+' materialize in the chatroom',
+' saunter into the discussion',
+' step into the banter',
+' waltz into the chat',
+' slide into the dialogue',
+' amble into the room',
+' appear in the conversation'
+    ];
+    View.toast(
+      data.user.name + fun_msg[Math.floor(fun_msg.length*Math.random())],
+      RVC.usercolors[data.user.color]
+    );
+  });
+  function addOtherUser(user){
+    RVC.users.push(user);
+  }
 }

@@ -14,6 +14,7 @@ const JQueryForm = {};
  */
 JQueryForm.init = (form, inputs, callback) => {
     $("#"+form+" button").on("click", getDataFromInput);
+    // $("input#"+inputs[0][0]).focus(); // deprecated?
     const data = {};
     function getDataFromInput() {
         let formIsValid = true;
