@@ -7,7 +7,7 @@ let _toastTimer;
 const View = {};
 
 /**
- * Toast alert of 3.2s
+ * Toast alert of 4.2s
  * @param {string} message 
  */
 View.toast = (message, color) => {
@@ -22,7 +22,7 @@ View.toast = (message, color) => {
     clearTimeout(_toastTimer);
     _toastTimer = setInterval(() => {
         $(".toast").hide();
-    }, 3200);
+    }, 4200);
 }
 
 export {View};
