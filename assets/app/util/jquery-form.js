@@ -20,12 +20,12 @@ JQueryForm.init = (form, inputs, callback) => {
         inputs.forEach(input => {
             const element = $("input#"+input[0]);
             element.removeClass('invalid');
-            const val = element.val();
+            const val = element.val().trim();
             data[input[0]] = val;
             // si regex :
             if (input[1] != undefined) {
                 if (!input[1].test(val)) {
-                    element.addClass('invalid')
+                    element.addClass('invalid');
                     formIsValid = false;
                 }
             }

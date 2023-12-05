@@ -7,19 +7,13 @@
     <title>RealVideoChat</title>
   </head>
   <body>
-    <h1>RealVideoChat-V0.1</h1>
-    <h2>Abbly Connection test</h2>
-    <ul>
-      <li><p id="message">.................</p></li>
-    </ul>
+    <h1 class="small">RealVideoChat-V0.1</h1>
     <!-- That's a toast to tell what's happenning -->
     <span class="toast" style="display:none"></span>
-    <!-- test modal -->
-    <!-- <label for="modal-control" role="button">Join</label> -->
+    <!-- ask room modal -->
     <input type="checkbox" class="modal">
     <div id="modal-roomname-dialog" role="dialog" aria-labelledby="dialog-title">
       <div id="roomname-card" class="card">
-        <!-- <label for="modal-control" class="modal-close" ></label> -->
         <h3 class="section" id="dialog-title">Welcome visitor!</h3>
         <fieldset>
           <legend>Join room</legend>
@@ -32,7 +26,39 @@
               <button>Enter</button>
             </div>
             <div class="small">
-              Alphanumeric characters and underscores (_). Special characters and spaces are not allowed.
+              Alphanumeric characters and underscores_ Special characters and spaces are not allowed. Case non-sensitive.
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <!-- ask username modal -->
+    <input type="checkbox" class="modal">
+    <div id="modal-username-dialog" role="dialog" aria-labelledby="dialog-title">
+      <div id="username-card" class="card">
+        <label for="modal-control" class="modal-close" ></label>
+        <h3 class="section" id="dialog-title">Create Your Avatar</h3>
+        <fieldset>
+          <legend>About you</legend>
+          <label for="username">What's your name?</label>
+          <input type="text" id="username" placeholder="Pseudonym"/>
+          <div class="small margin-bottom-10px">
+            Alphanumeric characters and underscores_ Special characters and spaces are not allowed.
+          </div>
+          <label>What color would you like to choose?</label>
+          <div class="row">
+            <div class="col-sm-8">
+              <ul id="listColor">
+                <li class="btColor"></li>
+                <li class="btColor"></li>
+                <li class="btColor"></li>
+                <li class="btColor"></li>
+                <li class="btColor"></li>
+              </ul>
+              <div id="color1" class="btDot"></div>
+            </div>
+            <div class="col-sm-4 center">
+              <button>Enter</button>
             </div>
           </div>
         </fieldset>
