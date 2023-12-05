@@ -27,7 +27,7 @@ AblyConnector.connect = async (apiKey, channel, callback) => {
 AblyConnector.addListener = (eventName, fn) => {
     _channel.subscribe(eventName, (message) => {
         if (message.connectionId != _ably.connection.id) {
-            fn(message.data);
+            fn(message.object);
         }
     });
 }

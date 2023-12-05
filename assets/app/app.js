@@ -88,16 +88,16 @@ function makePresentation(){
   AblyConnector.say('hello', RVC.user);
 
   // he registers the users saying welcome in return
-  AblyConnector.addListener('welcome', (data) => {
-    if (!RVC.users.find(u => u.id == data.user.id)){
-      addOtherUser(data.user);
+  AblyConnector.addListener('welcome', (user) => {
+    if (!RVC.users.find(u => u.id == user.id)){
+      addOtherUser(user);
     }
   });
 
   // then he registers new users, and greets them with a welcome
-  AblyConnector.addListener('hello', (data) => {
+  AblyConnector.addListener('hello', (user) => {
 
-    addOtherUser(data.user);
+    addOtherUser(user);
 
     AblyConnector.say('welcome', RVC.user);
 
@@ -117,8 +117,8 @@ function makePresentation(){
 ' appear in the conversation'
     ];
     View.toast(
-      data.user.name + fun_msg[Math.floor(fun_msg.length*Math.random())],
-      RVC.usercolors[data.user.color]
+      user.name + fun_msg[Math.floor(fun_msg.length*Math.random())],
+      RVC.usercolors[user.color]
     );
   });
   function addOtherUser(user){
