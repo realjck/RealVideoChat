@@ -99,7 +99,7 @@ function makePresentation(){
 
     addOtherUser(data.user);
 
-    AblyConnector.say('welcome', user);
+    AblyConnector.say('welcome', RVC.user);
 
     // fun message
     const fun_msg = [
