@@ -73,6 +73,7 @@ function askUserName() {
   // bt close
   $("#modal-username-dialog .modal-close").on("click", () => {
     $("#modal-username-dialog").hide();
+    // go back to room selection
     askRoom();
   });
   // form
@@ -103,21 +104,21 @@ function makePresentation(){
 
     // fun message
     const fun_msg = [
-' pop into the chat',
-' swoop into the conversation',
-' breeze into the room',
-' dive into the chat',
-' glide into the conversation',
-' materialize in the chatroom',
-' saunter into the discussion',
-' step into the banter',
-' waltz into the chat',
-' slide into the dialogue',
-' amble into the room',
-' appear in the conversation'
+'pop into the chat',
+'swoop into the conversation',
+'breeze into the room',
+'dive into the chat',
+'glide into the conversation',
+'materialize in the chatroom',
+'saunter into the discussion',
+'step into the banter',
+'waltz into the chat',
+'slide into the dialogue',
+'amble into the room',
+'appear in the conversation'
     ];
     View.toast(
-      user.name + fun_msg[Math.floor(fun_msg.length*Math.random())],
+      user.name + ' ' + fun_msg[Math.floor(fun_msg.length*Math.random())],
       RVC.usercolors[user.color]
     );
   });

@@ -25,20 +25,28 @@ AblyConnector.connect = async (apiKey, channel, callback) => {
  * @param {function} fn 
  */
 AblyConnector.addListener = (eventName, fn) => {
-    _channel.subscribe(eventName, (message) => {
-        if (message.connectionId != _ably.connection.id) {
-            fn(message.data);
-        }
-    });
+    try {
+        _channel.subscribe(eventName, (message) => {
+            if (message.connectionId != _ably.connection.id) {
+                fn(message.data);
+            }
+        });
+    } catch (e) {
+        console.log("IOERROR: SUBSCRIBE to '"+eventName+"'", fn);
+    }
 }
 
 /**
  * Publish an object message to an Event
  * @param {string} eventName 
  * @param {object} object 
- */
+*/
 AblyConnector.say = (eventName, object) => {
-    _channel.publish(eventName, object);
+    try {
+        _channel.publish(eventName, object);
+    } catch (e) {
+        console.log("IOERROR: SAY to '"+eventName+"'", object);
+    }
 }
 
 export {AblyConnector};

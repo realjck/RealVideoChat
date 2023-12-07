@@ -13,9 +13,26 @@ const JQueryForm = {};
  * @param {function} callback 
  */
 JQueryForm.init = (form, inputs, callback) => {
+    
+    // click on button:
     $("#"+form+" button").on("click", getDataFromInput);
-    // $("input#"+inputs[0][0]).focus(); // deprecated?
+
+    // keypress enter on inputs:
+    inputs.forEach(input => {
+        $("input#"+input[0]).on("keypress", (event) => {
+            if (event.which == 13){
+                getDataFromInput();
+            }
+        });
+    });
+
+    // focus on first input:
+    document.getElementById(inputs[0][0]).focus(); 
+    
+    // create data object:
     const data = {};
+
+    // get input data, and send it via callback if ok:
     function getDataFromInput() {
         let formIsValid = true;
         inputs.forEach(input => {
