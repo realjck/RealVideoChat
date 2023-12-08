@@ -15,18 +15,25 @@ import { View } from "./view.js";
 
 // RealVideoChat
 const RVC = {
-  currentChannel : '',
-  user : {
-    uuid : Date.now() + '-' + Math.round(Math.random()*999999999999999),
-    name : "",
-    color : 0
-  },
-  users : [],
+  // CONFIG:
+  // ------
   usercolors : ['#EE5A24','#009432','#0652DD','#9980FA','#833471'],
+  // APP DATA:
+  // --------
+  // Current channel chosen by user (alias 'Room name'):
+  currentChannel : '',
+  // App user:
+  user : {
+    id : "",// = Ably.realtime.connection.id (when connected)
+    name : "", // Name chosen by user
+    color : 0 // Color index of usercolors chosen by user
+  },
+  // Distant users:
+  users : []
 };
 
 loadEnv(() => {
-  console.log('*** REAL VIDEO CHAT v'+window.VERSION+' ***');
+  console.log('** REAL VIDEO CHAT v'+window.VERSION+' **');
   console.log(!window.DEV ? 'Online mode'
     : 'Offline for developement');
   askRoom();
@@ -41,13 +48,22 @@ function askRoom() {
     if (window.DEV){
       askUserName();
     } else {
-      AblyConnector.connect(window.API_KEY, RVC.currentChannel, askUserName);
+      AblyConnector
+        .connect(window.API_KEY, RVC.currentChannel)
+        .then((id) => {
+          RVC.user.id = id
+          askUserName();
+        })
+        .catch((e) => {
+          View.toast("** CONNEXION ERROR **", "red");
+          console.error("IOERROR CAN'T CONNECT", e);
+        });
     }
   });
 }
-  
+
 function askUserName() {
-  
+
   // toast
   View.toast(window.DEV ? 'OFFLINE MODE' : 'CONNECTED TO '+RVC.currentChannel.toUpperCase());
   
