@@ -12,10 +12,9 @@ const View = {};
  */
 View.toast = (message, color) => {
     if (color){
-        $(".toast").addClass("toast-colored");
-        $(".toast-colored").css("background-color", color);
+        $(".toast").css("background-color", color);
     } else {
-        $(".toast").removeClass("toast-colored");
+        $(".toast").css("background-color", "var(--toast-back-color)");
     }
     $(".toast").html(message);
     $(".toast").show();

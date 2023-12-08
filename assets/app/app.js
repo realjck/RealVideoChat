@@ -36,6 +36,10 @@ loadEnv(() => {
   console.log('** REAL VIDEO CHAT v'+window.VERSION+' **');
   console.log(!window.DEV ? 'Online mode'
     : 'Offline for developement');
+  // for dev:
+  if (window.DEV){
+    View.toast('** DEV MODE **', 'darkgreen');
+  }
   askRoom();
 });
   
@@ -65,7 +69,7 @@ function askRoom() {
 function askUserName() {
 
   // toast
-  View.toast(window.DEV ? 'OFFLINE MODE' : 'CONNECTED TO '+RVC.currentChannel.toUpperCase());
+  View.toast(window.DEV ? 'OFFLINE' : 'CONNECTED TO '+RVC.currentChannel.toUpperCase());
   
   // USER NAME
   // ---------
