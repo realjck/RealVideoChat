@@ -1,4 +1,4 @@
-import { loadEnv } from "./util/load-env.js";
+import { loadSettings } from "./util/load-settings.js";
 import { AblyConnector } from './util/ably-connector.js';
 import { JQueryForm } from "./util/jquery-form.js";
 import { View } from "./view.js";
@@ -26,13 +26,13 @@ const RVC = {
   user : {
     id : "",// = Ably.realtime.connection.id (when connected)
     name : "", // Name chosen by user
-    color : 0 // Color index of usercolors chosen by user
+    color : 0 // Color index of userColors chosen by user
   },
   // Distant users:
   users : []
 };
 
-loadEnv(() => {
+loadSettings(() => {
   console.log('** REAL VIDEO CHAT v'+window.VERSION+' **');
   console.log(!window.DEV ? 'Online mode'
     : 'Offline for development');

@@ -1,10 +1,10 @@
 /**
- * Load .env file values into window object,
+ * Load settings file values into window object,
  * then launch callback
  * @param {function} callback
  */
-const loadEnv = (callback) => {
-    fetch('.env')
+const loadSettings = (callback) => {
+    fetch('settings')
         .then(response => response.text())
         .then(data => {
             const envVariables = data.split('\n');
@@ -22,6 +22,6 @@ const loadEnv = (callback) => {
             });
             callback();
         })
-        .catch(error => console.error('Error loading .env file:', error));
+        .catch(error => console.error('Error loading settings file:', error));
 }
-export {loadEnv};
+export {loadSettings};
