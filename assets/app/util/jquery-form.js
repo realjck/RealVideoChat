@@ -20,7 +20,7 @@ JQueryForm.init = (form, inputs, callback) => {
     // keypress enter on inputs:
     inputs.forEach(input => {
         $("input#"+input[0]).on("keypress", (event) => {
-            if (event.which == 13){
+            if (event.which === 13){
                 getDataFromInput();
             }
         });
@@ -41,7 +41,7 @@ JQueryForm.init = (form, inputs, callback) => {
             const val = element.val().trim();
             data[input[0]] = val;
             // si regex :
-            if (input[1] != undefined) {
+            if (input[1] !== undefined) {
                 if (!input[1].test(val)) {
                     element.addClass('invalid');
                     formIsValid = false;

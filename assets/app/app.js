@@ -17,7 +17,7 @@ import { View } from "./view.js";
 const RVC = {
   // CONFIG:
   // ------
-  usercolors : ['#EE5A24','#009432','#0652DD','#9980FA','#833471'],
+  userColors : ['#EE5A24','#009432','#0652DD','#9980FA','#833471'],
   // APP DATA:
   // --------
   // Current channel chosen by user (alias 'Room name'):
@@ -35,7 +35,7 @@ const RVC = {
 loadEnv(() => {
   console.log('** REAL VIDEO CHAT v'+window.VERSION+' **');
   console.log(!window.DEV ? 'Online mode'
-    : 'Offline for developement');
+    : 'Offline for development');
   // for dev:
   if (window.DEV){
     View.toast('** DEV MODE **', 'darkgreen');
@@ -75,12 +75,12 @@ function askUserName() {
   // ---------
   $("#modal-username-dialog").show();
   // color buttons
-  RVC.user.color = Math.floor(Math.random()*RVC.usercolors.length);
+  RVC.user.color = Math.floor(Math.random()*RVC.userColors.length);
   activeBtColor();
-  for (let i=0; i<RVC.usercolors.length; i++){
+  for (let i=0; i<RVC.userColors.length; i++){
     const bt = $("#modal-username-dialog li").eq(i);
     bt[0].n = i;
-    bt.css("background-color", RVC.usercolors[i]);
+    bt.css("background-color", RVC.userColors[i]);
     bt.on("click", (e) => {
       RVC.user.color = $(e.currentTarget)[0].n;
       activeBtColor();
@@ -110,7 +110,7 @@ function makePresentation(){
 
   // he registers the users saying welcome in return
   AblyConnector.addListener('welcome', (user) => {
-    if (!RVC.users.find(u => u.id == user.id)){
+    if (!RVC.users.find(u => u.id === user.id)){
       addOtherUser(user);
     }
   });
@@ -139,7 +139,7 @@ function makePresentation(){
     ];
     View.toast(
       user.name + ' ' + fun_msg[Math.floor(fun_msg.length*Math.random())],
-      RVC.usercolors[user.color]
+      RVC.userColors[user.color]
     );
   });
   function addOtherUser(user){

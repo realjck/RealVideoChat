@@ -11,8 +11,7 @@ const AblyConnector = {};
  * __Use the 'then' method to retrieve the result id, as shown below:"
  * ex.: AblyConnector.connect('xxx', 'xxx').then((id) => app_id = id);__
  * @param {string} channel 
- * @param {string} apiKey 
- * @param {function} callback 
+ * @param {string} apiKey
  * @returns Ably realtime connection id (string)
  */
 AblyConnector.connect = async (apiKey, channel) => {
@@ -23,7 +22,7 @@ AblyConnector.connect = async (apiKey, channel) => {
 }
 
 /**
- * Create an Event that do something with the recieved data object
+ * Create an Event that do something with the received data object
  * __ex.: Ablyconnector.addListener('xxx', ((data) => {app_data = data}));__
  * @param {string} eventName 
  * @param {function} fn 
@@ -31,7 +30,7 @@ AblyConnector.connect = async (apiKey, channel) => {
 AblyConnector.addListener = (eventName, fn) => {
     try {
         _channel.subscribe(eventName, (message) => {
-            if (message.connectionId != _ably.connection.id) {
+            if (message.connectionId !== _ably.connection.id) {
                 fn(message.data);
             }
         });

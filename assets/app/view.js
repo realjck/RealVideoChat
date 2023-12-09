@@ -8,7 +8,8 @@ const View = {};
 
 /**
  * Toast alert of 4.2s
- * @param {string} message 
+ * @param {string} message
+ * @param {string} color (optionnal)
  */
 View.toast = (message, color) => {
     if (color){

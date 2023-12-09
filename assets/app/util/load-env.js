@@ -12,9 +12,9 @@ const loadEnv = (callback) => {
                 let [name, value] = variable.split('=');
                 value = value.trim();
                 if (name && value) {
-                    if (value.toLowerCase() == 'true'){
+                    if (value.toLowerCase() === 'true'){
                         value = true;
-                    }  else if (value.toLowerCase() == 'false'){
+                    }  else if (value.toLowerCase() === 'false'){
                         value = false;
                     }
                     window[name.trim()] = value;
