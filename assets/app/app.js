@@ -39,8 +39,9 @@ loadSettings(() => {
   // for dev:
   if (window.DEV){
     View.toast('** DEV MODE **', 'darkgreen');
+  } else {
+    askRoom();
   }
-  askRoom();
 });
   
 function askRoom() {

@@ -1,6 +1,6 @@
 /*
     Style for RealVideoChat
-    overides mini-dark.css
+    overrides mini-dark.css
 */
 
 :root {
@@ -18,7 +18,7 @@
     border-radius: 25px;
     max-height: inherit !important;
 }
-#dialog-title {
+.dialog-title {
     border: 0;
     width: 85%;
 }
@@ -48,7 +48,32 @@ input {
 /* RVC STYLE */
 /* --------- */
 
-/* Butons Color selection: */
+body {
+    height: 100%;
+}
+/* Jquery Page split resizer: */
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+.divider {
+    width: 20px;
+    cursor: w-resize;
+    background: linear-gradient(to right, #1a1a1a, #333, #000);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+}
+.left-panel, .right-panel {
+    flex-grow: 1;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.right-panel {
+    background-color: black;
+    width: 80vw;
+}
+
+/* Buttons Color selection: */
 #modal-username-dialog ul {
     list-style: none;
     display: flex;
