@@ -1,4 +1,4 @@
-# real-video-chat
+# media-room
 
 A minimal and responsive media chat room using [Ably.io](https://ably.com/)
 

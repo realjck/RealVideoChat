@@ -12,8 +12,8 @@ import { View } from "./view.js";
  * - hello(:user) -> Register user, say welcome
  * - welcome(:user) -> Register user
  */
-// RealVideoChat
-const RVC = {
+// MediaRoom
+const MR = {
   // CONFIG:
   // ------
   userColors : ['#EE5A24','#009432','#0652DD','#9980FA','#833471'],
@@ -35,10 +35,10 @@ const RVC = {
  * LOAD SETTINGS
  */
 loadSettings(() => {
-  console.log('** REAL VIDEO CHAT v'+window.VERSION+' **');
+  console.log('** MEDIA ROOM v'+window.VERSION+' **');
   console.log(!window.DEV ? 'Online mode'
     : 'Offline for development');
-  $("h1").html("RealVideoChat v"+window.VERSION);
+  $("h1").html("MediaRoom v"+window.VERSION);
   // for dev:
   if (window.DEV){
     View.toast('** DEV MODE **', 'darkgreen');
@@ -55,15 +55,15 @@ function askRoom() {
   // ROOM NAME
   $("#modal-roomname-dialog").show();
   JQueryForm.init('roomname-card', [['roomname', /^\w+$/]], (data) => {
-    RVC.currentChannel = data.roomname.toLowerCase();
+    MR.currentChannel = data.roomname.toLowerCase();
     $("#modal-roomname-dialog").hide();
     if (window.DEV){
       askUserName();
     } else {
       AblyConnector
-        .connect(window.API_KEY, RVC.currentChannel)
+        .connect(window.API_KEY, MR.currentChannel)
         .then((id) => {
-          RVC.user.id = id
+          MR.user.id = id
           askUserName();
         })
         .catch((e) => {
@@ -80,26 +80,26 @@ function askRoom() {
 function askUserName() {
 
   // toast
-  View.toast(window.DEV ? 'OFFLINE' : 'CONNECTED TO '+RVC.currentChannel.toUpperCase());
+  View.toast(window.DEV ? 'OFFLINE' : 'CONNECTED TO '+MR.currentChannel.toUpperCase());
 
   // USER NAME
   // ---------
   $("#modal-username-dialog").show();
   // color buttons:
-  RVC.user.color = Math.floor(Math.random()*RVC.userColors.length);
+  MR.user.color = Math.floor(Math.random()*MR.userColors.length);
   activeBtColor();
-  for (let i=0; i<RVC.userColors.length; i++){
+  for (let i=0; i<MR.userColors.length; i++){
     const bt = $("#modal-username-dialog li").eq(i);
     bt[0].n = i;
-    bt.css("background-color", RVC.userColors[i]);
+    bt.css("background-color", MR.userColors[i]);
     bt.on("click", (e) => {
-      RVC.user.color = $(e.currentTarget)[0].n;
+      MR.user.color = $(e.currentTarget)[0].n;
       activeBtColor();
     });
   }
   function activeBtColor(){
     $("#modal-username-dialog li").removeClass('active');
-    $("#modal-username-dialog li").eq(RVC.user.color).addClass('active');
+    $("#modal-username-dialog li").eq(MR.user.color).addClass('active');
   }
   // bt close:
   $("#modal-username-dialog .modal-close").on("click", () => {
@@ -109,7 +109,7 @@ function askUserName() {
   });
   // form
   JQueryForm.init('username-card', [['username', /^\w+$/]], (data) => {
-    RVC.user.name = data.username;
+    MR.user.name = data.username;
     $("#modal-username-dialog").hide();
     makePresentation();
   });
@@ -120,11 +120,11 @@ function askUserName() {
  */
 function makePresentation(){
   // user say hello:
-  AblyConnector.say('hello', RVC.user);
+  AblyConnector.say('hello', MR.user);
 
   // he registers the users saying welcome in return:
   AblyConnector.addListener('welcome', (user) => {
-    if (!RVC.users.find(u => u.id === user.id)){
+    if (!MR.users.find(u => u.id === user.id)){
       addOtherUser(user);
     }
   });
@@ -134,7 +134,7 @@ function makePresentation(){
 
     addOtherUser(user);
 
-    AblyConnector.say('welcome', RVC.user);
+    AblyConnector.say('welcome', MR.user);
 
     // fun message:
     const fun_msg = [
@@ -153,11 +153,11 @@ function makePresentation(){
     ];
     View.toast(
       user.name + ' ' + fun_msg[Math.floor(fun_msg.length*Math.random())],
-      RVC.userColors[user.color]
+      MR.userColors[user.color]
     );
   });
   function addOtherUser(user){
-    RVC.users.push(user);
+    MR.users.push(user);
   }
 
   // next:

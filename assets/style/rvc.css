@@ -1,5 +1,5 @@
 /*
-    Style for RealVideoChat
+    Style for MediaRoom
     overrides mini-dark.css
 */
 
@@ -45,8 +45,8 @@ input {
     border-color: var(--input-invalid-color);
 }
 
-/* RVC STYLE */
-/* --------- */
+/* MR STYLE */
+/* -------- */
 
 body {
     height: 100%;
