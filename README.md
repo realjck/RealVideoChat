@@ -1,6 +1,6 @@
 # real-video-chat
 
-A minimal and responsive web-browsing and video chat room using [Ably.io](https://ably.com/)
+A minimal and responsive video chat room using [Ably.io](https://ably.com/)
 
 ![javascript vanilla](https://img.shields.io/badge/javascript-grey?logo=javascript)
 [![jquery](https://img.shields.io/badge/jquery-0865a7?logo=jquery)](https://jquery.com/)

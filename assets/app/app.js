@@ -12,7 +12,6 @@ import { View } from "./view.js";
  * - hello(:user) -> Register user, say welcome
  * - welcome(:user) -> Register user
  */
-
 // RealVideoChat
 const RVC = {
   // CONFIG:
@@ -32,10 +31,14 @@ const RVC = {
   users : []
 };
 
+/**
+ * LOAD SETTINGS
+ */
 loadSettings(() => {
   console.log('** REAL VIDEO CHAT v'+window.VERSION+' **');
   console.log(!window.DEV ? 'Online mode'
     : 'Offline for development');
+  $("h1").html("RealVideoChat v"+window.VERSION);
   // for dev:
   if (window.DEV){
     View.toast('** DEV MODE **', 'darkgreen');
@@ -43,7 +46,10 @@ loadSettings(() => {
     askRoom();
   }
 });
-  
+
+/**
+ * ASK ROOM TO CONNECT
+ */
 function askRoom() {
   // ROOM NAME
   $("#modal-roomname-dialog").show();
@@ -67,15 +73,18 @@ function askRoom() {
   });
 }
 
+/**
+ * ASK USER NAME
+ */
 function askUserName() {
 
   // toast
   View.toast(window.DEV ? 'OFFLINE' : 'CONNECTED TO '+RVC.currentChannel.toUpperCase());
-  
+
   // USER NAME
   // ---------
   $("#modal-username-dialog").show();
-  // color buttons
+  // color buttons:
   RVC.user.color = Math.floor(Math.random()*RVC.userColors.length);
   activeBtColor();
   for (let i=0; i<RVC.userColors.length; i++){
@@ -91,10 +100,10 @@ function askUserName() {
     $("#modal-username-dialog li").removeClass('active');
     $("#modal-username-dialog li").eq(RVC.user.color).addClass('active');
   }
-  // bt close
+  // bt close:
   $("#modal-username-dialog .modal-close").on("click", () => {
     $("#modal-username-dialog").hide();
-    // go back to room selection
+    // go back to room selection:
     askRoom();
   });
   // form
@@ -105,25 +114,28 @@ function askUserName() {
   });
 }
 
+/**
+ * SEND AND ACTIVE GREETINGS
+ */
 function makePresentation(){
-  // user say hello
+  // user say hello:
   AblyConnector.say('hello', RVC.user);
 
-  // he registers the users saying welcome in return
+  // he registers the users saying welcome in return:
   AblyConnector.addListener('welcome', (user) => {
     if (!RVC.users.find(u => u.id === user.id)){
       addOtherUser(user);
     }
   });
 
-  // then he registers new users, and greets them with a welcome
+  // then he registers new users, and greets them with a welcome:
   AblyConnector.addListener('hello', (user) => {
 
     addOtherUser(user);
 
     AblyConnector.say('welcome', RVC.user);
 
-    // fun message
+    // fun message:
     const fun_msg = [
 'pop into the chat',
 'swoop into the conversation',
@@ -146,4 +158,14 @@ function makePresentation(){
   function addOtherUser(user){
     RVC.users.push(user);
   }
+
+  // next:
+  initVideo();
+}
+
+/**
+ * INITIALIZE VIDEO SYSTEM
+ */
+function initVideo(){
+
 }
