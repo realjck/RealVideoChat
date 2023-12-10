@@ -42,6 +42,7 @@ loadSettings(() => {
   // for dev:
   if (window.DEV){
     View.toast('** DEV MODE **', 'darkgreen');
+    makePresentation();
   } else {
     askRoom();
   }
@@ -160,12 +161,25 @@ function makePresentation(){
   }
 
   // next:
-  initVideo();
+  initMedia();
 }
 
 /**
  * INITIALIZE VIDEO SYSTEM
  */
-function initVideo(){
-
+function initMedia(){
+  // End of media:
+  $("video").on("ended", () => {
+    // put poster back:
+    $("video")[0].load();
+    // fun message:
+    const fun_msg = [
+      'The media is over, but the fun is just beginning.',
+      'The media is finished, but the story is still being written.',
+      'The media is finished, but the imagination is still running wild.',
+      'The media is finished, but the memories will last a lifetime.',
+      'The media is finished, but the journey is only just beginning.'
+    ];
+    View.toast(fun_msg[Math.floor(fun_msg.length*Math.random())]);
+  });
 }

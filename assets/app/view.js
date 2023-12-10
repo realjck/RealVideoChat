@@ -11,7 +11,7 @@ const View = {};
  * @param {string} message
  * @param {string} color (optionnal)
  */
-View.toast = (message, color) => {
+View.toast = (message, color = undefined) => {
     if (color){
         $(".toast").css("background-color", color);
     } else {
