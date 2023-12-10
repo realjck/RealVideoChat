@@ -1,5 +1,7 @@
 # media-room
 
+<img src="./assets/images/mascot.svg" height="150px">
+
 A minimal and responsive media chat room using [Ably.io](https://ably.com/)
 
 ![javascript vanilla](https://img.shields.io/badge/javascript-grey?logo=javascript)
