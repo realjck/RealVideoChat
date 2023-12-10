@@ -8,10 +8,10 @@ $(document).ready(() => {
     $(document).mousemove(function(e) {
         if (isResizing) {
             let offset = e.clientX - lastDownX;
-            let leftPanelWidth = $('.left-panel').width();
-            let rightPanelWidth = $('.right-panel').width();
-            $('.left-panel').width(leftPanelWidth + offset);
-            $('.right-panel').width(rightPanelWidth - offset);
+            let leftPanelWidth = $(".left-panel").width();
+            let rightPanelWidth = $(".right-panel").width();
+            $(".left-panel").width(leftPanelWidth + offset);
+            $(".right-panel").width(rightPanelWidth - offset);
             lastDownX = e.clientX;
         }
     }).mouseup(() => {

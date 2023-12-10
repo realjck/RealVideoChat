@@ -7,12 +7,16 @@
     <title>RealVideoChat</title>
   </head>
   <body>
+    <!-- MAIN CONTAINER: -->
     <div class="container">
+      <!-- Left Panel: -->
       <div class="left-panel">
         <h1 class="small">RealVideoChat-v</h1>
+        <!-- Left Panel - Messages box container -->
         <div class="box-container">
 
         </div>
+        <!-- Left Panel - Send messages area -->
         <div class="row">
           <div class="col-sm-8">
             <textarea type="" id="message" placeholder="Send a message to the room"></textarea>
@@ -27,7 +31,9 @@
           </div>
         </div>
       </div>
+      <!-- Divider: -->
       <div class="divider"></div>
+      <!-- Right Panel: -->
       <div class="right-panel">
         <video controls poster="./assets/images/video-poster.svg">
           <source src="http://jc.klein.free.fr/videos/test.mp4" type="video/mp4">
@@ -36,7 +42,7 @@
     </div>
     <!-- That's a toast to tell what's happenning -->
     <span class="toast" style="display:none"></span>
-    <!-- ask room modal -->
+    <!-- 'Ask Room name' modal -->
     <input type="checkbox" class="modal">
     <div id="modal-roomname-dialog" role="dialog" aria-labelledby="dialog-title">
       <div id="roomname-card" class="card">
@@ -60,7 +66,7 @@
         </fieldset>
       </div>
     </div>
-    <!-- ask username modal -->
+    <!-- 'Ask Username' modal -->
     <input type="checkbox" class="modal">
     <div id="modal-username-dialog" role="dialog" aria-labelledby="dialog-title">
       <div id="username-card" class="card">
@@ -96,6 +102,6 @@
   </body>
   <script src="//cdn.ably.com/lib/ably.min-1.js"></script>
   <script src="./assets/app/jquery/jquery-3.7.1.min.js"></script>
-  <script type="module" src="./assets/app/util/jquery-pagesplit-resizer.js"></script>
+  <script type="module" src="./assets/app/self/jquery-pagesplit-resizer.js"></script>
   <script type="module" src="./assets/app/app.js"></script>
 </html>
