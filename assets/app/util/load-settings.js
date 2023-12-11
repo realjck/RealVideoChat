@@ -4,7 +4,7 @@
  * @param {function} callback
  */
 const loadSettings = (callback) => {
-    fetch('settings')
+    fetch('./settings.txt')
         .then(response => response.text())
         .then(data => {
             const envVariables = data.split('\n');

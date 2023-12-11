@@ -2,7 +2,7 @@
 /node_modules
 
 # Ignorer les fichiers de settings
-settings
+settings.txt
 
 # Ignorer config IDE
 .idea
