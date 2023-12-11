@@ -98,8 +98,8 @@ function askUserName() {
     });
   }
   function activeBtColor(){
-    $("#modal-username-dialog li").removeClass('active');
-    $("#modal-username-dialog li").eq(MR.user.color).addClass('active');
+    $("#modal-username-dialog li").removeClass('active')
+        .eq(MR.user.color).addClass('active');
   }
   // bt close:
   $("#modal-username-dialog .modal-close").on("click", () => {
