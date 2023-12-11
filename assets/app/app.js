@@ -121,6 +121,7 @@ function askUserName() {
 function makePresentation(){
   // user say hello:
   AblyConnector.say('hello', MR.user);
+  showPresentationToast(MR.user);
 
   // he registers the users saying welcome in return:
   AblyConnector.addListener('welcome', (user) => {
@@ -131,11 +132,11 @@ function makePresentation(){
 
   // then he registers new users, and greets them with a welcome:
   AblyConnector.addListener('hello', (user) => {
-
     addOtherUser(user);
-
     AblyConnector.say('welcome', MR.user);
-
+    showPresentationToast(user);
+  })
+  function showPresentationToast(user){
     // fun message:
     const fun_msg = [
       'pop into the chat',
@@ -152,10 +153,10 @@ function makePresentation(){
       'appear in the conversation'
     ];
     View.toast(
-      user.name + ' ' + fun_msg[Math.floor(fun_msg.length*Math.random())],
-      MR.userColors[user.color]
+        user.name + ' ' + fun_msg[Math.floor(fun_msg.length*Math.random())],
+        MR.userColors[user.color]
     );
-  });
+  }
   function addOtherUser(user){
     MR.users.push(user);
   }
