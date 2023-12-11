@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MediaRoom</title>
     <link rel="icon" type="image/svg+xml" href="./assets/images/mascot.svg">
-    <link href="./assets/style/mini.css/mini-dark.css" rel="stylesheet" />
+    <link href="./assets/style/mini.css/mini-dark-pro.css" rel="stylesheet" />
     <link href="./assets/style/mr.css" rel="stylesheet" />
     <meta name="robots" content="noindex, nofollow">
   </head>
@@ -46,7 +46,8 @@
     <!-- That's a toast to tell what's happening -->
     <span class="toast" style="display:none"></span>
     <!-- 'Ask Room name' modal -->
-    <label><input name="roomname-modal" type="checkbox" class="modal"></label>
+    <label for="roomname-modal" style="display: none;">Room Name Modal</label>
+    <input id="roomname-modal" type="checkbox" class="modal">
     <div id="modal-roomname-dialog" role="dialog" aria-labelledby="dialog-title">
       <div id="roomname-card" class="card">
         <h3 class="section dialog-title">Welcome visitor!</h3>
@@ -70,7 +71,8 @@
       </div>
     </div>
     <!-- 'Ask Username' modal -->
-    <label><input name="username-modal" type="checkbox" class="modal"></label>
+    <label for="username-modal" style="display:none">Room Name Modal</label>
+    <input id="username-modal" type="checkbox"  class="modal">
     <div id="modal-username-dialog" role="dialog" aria-labelledby="dialog-title">
       <div id="username-card" class="card">
         <div class="modal-close" ></div>
