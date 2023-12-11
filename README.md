@@ -37,6 +37,23 @@ When launched, the application display a modal to connect to the room:
 
 <img src="./assets/images/screenshots/ss1.jpg" alt="screenshot">
 
+## Feature Roadmap
+
+1) **Real-time chat system**
+
+
+2) **Video Playback Controls:**
+
+   - Add commands for initiating and pausing video playback.
+   Ensure synchronization of video playback across multiple users.
+   Use Ably to update all connected users in real-time.
+
+
+3) **Audio Media Support:**
+
+   - Implement support for audio media files.
+   Consider potential integration with external sources such as YouTube (pending).
+
 ## MIT License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/realjck/media-room/blob/main/LICENSE)
