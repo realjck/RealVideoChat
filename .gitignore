@@ -1,8 +1,8 @@
 # Ignorer le répertoire node_modules
 /node_modules
 
-# Ignorer les fichiers de settings
-settings.txt
+# Ignorer les fichiers de config
+/config
 
 # Ignorer config IDE
-.idea
+.idead

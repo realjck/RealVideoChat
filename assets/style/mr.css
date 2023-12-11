@@ -19,7 +19,7 @@
     max-height: inherit !important;
 }
 .dialog-title {
-    border: 0;
+    border: 0 !important;
     width: 85%;
 }
 input {

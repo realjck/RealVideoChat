@@ -34,7 +34,7 @@ const MR = {
 /**
  * LOAD SETTINGS
  */
-loadSettings(() => {
+loadSettings('./config/settings',() => {
   console.log('** MEDIA ROOM v'+window.VERSION+' **');
   console.log(!window.DEV ? 'Online mode'
     : 'Offline for development');
