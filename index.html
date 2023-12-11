@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link href="./assets/style/mini.css/mini-dark.css" rel="stylesheet" />
-    <link href="./assets/style/mr.css" rel="stylesheet" />
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MediaRoom</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/images/mascot.svg">
+    <link href="./assets/style/mini.css/mini-dark.css" rel="stylesheet" />
+    <link href="./assets/style/mr.css" rel="stylesheet" />
+    <meta name="robots" content="noindex, nofollow">
   </head>
   <body>
     <!-- MAIN CONTAINER: -->
-    <div class="container">
+    <div class="container" style="display:none">
       <!-- Left Panel: -->
       <div class="left-panel">
         <h1 class="small">MediaRoom-v</h1>
@@ -19,7 +21,7 @@
         <!-- Left Panel - Send messages area -->
         <div class="row">
           <div class="col-sm-8">
-            <textarea type="" id="message" placeholder="Send a message to the room"></textarea>
+            <label><textarea type="" id="message" placeholder="Send a message to the room"></textarea></label>
           </div>
           <div class="col-sm-4">
             <button type="submit">
@@ -41,10 +43,10 @@
         </video>
       </div>
     </div>
-    <!-- That's a toast to tell what's happenning -->
+    <!-- That's a toast to tell what's happening -->
     <span class="toast" style="display:none"></span>
     <!-- 'Ask Room name' modal -->
-    <input name="roomname-modal" type="checkbox" class="modal">
+    <label><input name="roomname-modal" type="checkbox" class="modal"></label>
     <div id="modal-roomname-dialog" role="dialog" aria-labelledby="dialog-title">
       <div id="roomname-card" class="card">
         <h3 class="section dialog-title">Welcome visitor!</h3>
@@ -68,7 +70,7 @@
       </div>
     </div>
     <!-- 'Ask Username' modal -->
-    <input name="username-modal" type="checkbox" class="modal">
+    <label><input name="username-modal" type="checkbox" class="modal"></label>
     <div id="modal-username-dialog" role="dialog" aria-labelledby="dialog-title">
       <div id="username-card" class="card">
         <div class="modal-close" ></div>
@@ -101,7 +103,7 @@
       </div>
     </div>
   </body>
-  <script src="//cdn.ably.com/lib/ably.min-1.js"></script>
+  <script src="https://cdn.ably.com/lib/ably.min-1.js"></script>
   <script src="./assets/app/jquery/jquery-3.7.1.min.js"></script>
   <script type="module" src="./assets/app/self/jquery-pagesplit-resizer.js"></script>
   <script type="module" src="./assets/app/app.js"></script>
