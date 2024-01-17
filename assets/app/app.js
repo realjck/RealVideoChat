@@ -161,6 +161,9 @@ function makePresentation(){
     MR.users.push(user);
   }
 
+  // show container:
+  $(".container").show();
+
   // next:
   initMedia();
 }

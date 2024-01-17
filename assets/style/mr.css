@@ -51,6 +51,14 @@ input {
 body {
     height: 100%;
     background-color: black;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
 }
 
 h1 {
@@ -147,4 +155,38 @@ li.btColor.active {
 }
 .box-container {
     height: calc(100vh - 8em);
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.speech-bubble {
+    background-color: #121212;
+    padding: 15px;
+    width: 75%;
+    border-radius: 15px;
+    color: #ccc;
+    margin: 0 0 15px 0;
+}
+.speech-bubble.right {
+    margin-left: auto;
+    margin-right: 10px;
+}
+.speech-bubble-user {
+    color: white;
+    border-radius: 5px;
+    font-size: small;
+    padding: 0 5px 0 5px;
+    margin: 0 0 2px -5px;
+    width: fit-content;
+}
+.speech-bubble > div {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+.speech-bubble-date {
+    font-size: x-small;
+    color: #888;
+    margin-left: 5px;
 }
