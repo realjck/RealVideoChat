@@ -1,6 +1,6 @@
 # media-room (wip)
 
-<img src="./web/assets/images/mascot.svg" alt="popcorn mascot" height="200">
+<img src="web/app/images/mascot.svg" alt="popcorn mascot" height="200">
 
 A minimal and responsive media chat room using Ably.io
 
@@ -22,7 +22,7 @@ A minimal and responsive media chat room using Ably.io
 
 3) ### Setting Up Configuration for API Key
 
-    Create a file named `settings` within a `./config/` folder and input your API key using the format `API_KEY=_____`. You can do it with these command lines :
+    Create a file named `settings` within a `./config/` web root folder and input your API key using the format `API_KEY=_____`. You can do it with these command lines :
 
     ~~~~
     cd web
