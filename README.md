@@ -35,7 +35,7 @@ Ensure that the `index.html` page is served to launch.
 
 When launched, it displays a modal to connect to the room:
 
-<img src="./assets/images/screenshots/ss1.jpg" alt="screenshot">
+<img src="./web/assets/images/screenshots/ss1.jpg" alt="screenshot">
 
 ## Feature Roadmap
 
