@@ -3,9 +3,9 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MediaRoom</title>
-    <link rel="icon" type="image/svg+xml" href="./assets/images/mascot.svg">
-    <link href="./assets/style/mini.css/mini-dark-pro.css" rel="stylesheet" />
-    <link href="./assets/style/mr.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="./app/images/mascot.svg">
+    <link href="./app/style/mini.css/mini-dark-pro.css" rel="stylesheet" />
+    <link href="./app/style/mr.css" rel="stylesheet" />
     <meta name="robots" content="noindex, nofollow">
   </head>
   <body>
@@ -55,7 +55,7 @@
       <div class="divider"></div>
       <!-- Right Panel: -->
       <div class="right-panel">
-        <video controls poster="./assets/images/video-poster.svg">
+        <video controls poster="./app/images/video-poster.svg">
           <source src="" type="video/mp4">
           <track default kind="descriptions" src=""/>
         </video>
@@ -123,8 +123,8 @@
       </div>
     </div>
   </body>
-  <script src="https://cdn.ably.com/lib/ably.min-1.js"></script>
-  <script src="./assets/app/jquery/jquery-3.7.1.min.js"></script>
-  <script type="module" src="./assets/app/self/jquery-pagesplit-resizer.js"></script>
-  <script type="module" src="./assets/app/app.js"></script>
+  <script src="./app/js/libs/jquery/jquery.min.js"></script>
+  <script src="./app/js/libs/ably/ably.min.js"></script>
+  <script type="module" src="./app/js/iife/page-split-resizer.js"></script>
+  <script type="module" src="./app/js/app.js"></script>
 </html>

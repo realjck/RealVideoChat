@@ -1,7 +1,7 @@
 import { loadSettings } from "./util/load-settings.js";
 import { AblyConnector } from './util/ably-connector.js';
 import { JQueryForm } from "./util/jquery-form.js";
-import { View } from "./view.js";
+import { View } from "./view/view.js";
 
 /**
  * MAIN APP
