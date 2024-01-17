@@ -26,14 +26,14 @@ A minimal and responsive media chat room using [Ably.io](https://ably.com/)
 
     ~~~~
     mkdir config
-    echo "API_KEY=_____" > config/settings
+    echo API_KEY=_____ > config/settings
     ~~~~
 
 ## Usage
 
 Ensure that the `index.html` page is served to launch.
 
-When launched, the application display a modal to connect to the room:
+When launched, it displays a modal to connect to the room:
 
 <img src="./assets/images/screenshots/ss1.jpg" alt="screenshot">
 
@@ -41,13 +41,13 @@ When launched, the application display a modal to connect to the room:
 
 1) **Real-time chat system**
 
+	- Chat conversation is transmitted via Ably API to the other client browsers. The data is recorded only in the HTML DOM of client pages.
 
 2) **Video Playback Controls:**
 
    - Add commands for initiating and pausing video playback.
    Ensure synchronization of video playback across multiple users.
    Use Ably to update all connected users in real-time.
-
 
 3) **Audio Media Support:**
 
