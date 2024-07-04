@@ -23,7 +23,7 @@ AblyConnector.connect = async (apiKey, channel) => {
 
 /**
  * Create an Event that do something with the received data object
- * __ex.: Ablyconnector.addListener('xxx', ((data) => {app_data = data}));__
+ * __ex.: AblyConnector.addListener('xxx', ((data) => {app_data = data}));__
  * @param {string} eventName 
  * @param {function} fn 
  */
@@ -41,7 +41,7 @@ AblyConnector.addListener = (eventName, fn) => {
 
 /**
  * Publish an object message to an Event
- * __ex.: Ablyconnector.say('xxx', data);__
+ * __ex.: AblyConnector.say('xxx', data);__
  * @param {string} eventName 
  * @param {object} object 
 */

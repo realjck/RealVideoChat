@@ -1,12 +1,18 @@
 # media-room (wip)
 
-<img src="web/app/images/mascot.svg" alt="popcorn mascot" height="200">
+<img src="client/web/app/images/mascot.svg" alt="popcorn mascot" height="200">
 
-A minimal and responsive media chat room using Ably.io
+A minimal and responsive media chat room
+
+### Client
 
 ![javascript vanilla](https://img.shields.io/badge/javascript-grey?logo=javascript)
 [![jquery](https://img.shields.io/badge/jquery-0865a7?logo=jquery)](https://jquery.com/)
 [![mini.css](https://img.shields.io/badge/mini.css-f22f21)](https://minicss.us/)
+
+### Server
+
+[![python](https://img.shields.io/badge/python-f7dc65?logo=python)](https://www.python.org/)
 
 ## Installation
 
@@ -25,14 +31,14 @@ A minimal and responsive media chat room using Ably.io
     Create a file named `settings` within a `./config/` web root folder and input your API key using the format `API_KEY=_____`. You can do it with these command lines :
 
     ~~~~
-    cd web
+    cd client/web
     mkdir config
     echo API_KEY=_____ > config/settings
     ~~~~
 
 ## Usage
 
-To run the application, serve the `web/` directory and launch the `index.html` file. You can use a server or a localhost server for this purpose.
+To run the application, serve the `client/web/` directory and launch the `index.html` file. You can use a server or a localhost server for this purpose.
 
 ## Feature Roadmap
 
