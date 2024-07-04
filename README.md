@@ -1,6 +1,6 @@
 # media-room (wip)
 
-<img src="client/web/app/images/mascot.svg" alt="popcorn mascot" height="200">
+<img src="web/app/images/mascot.svg" alt="popcorn mascot" height="200">
 
 A minimal and responsive media chat room
 
@@ -22,6 +22,9 @@ A minimal and responsive media chat room
     git clone https://github.com/realjck/media-room.git
     ~~~~
 
+> The use of Ably.io will be abandoned in favor of a websockets script which will be deployable via Docker.
+
+
 2) ### Get your Api Key
 
     Visit [Ably.io](https://ably.io) to sign up, create a project, retrieve your API key.
@@ -42,11 +45,13 @@ To run the application, serve the `client/web/` directory and launch the `index.
 
 ## Feature Roadmap
 
-- Real-time chat with Ably API
-     
-- Extra Media Support: Shaka Player implementation
+- [ ] ~~Real-time chat with Ably API~~
 
-- Video control: Add commands for initiating and pausing video
+- [ ] Build-in Server setup with Docker
+     
+- [ ] Extra Media Support: Shaka Player implementation
+
+- [ ] Video control: Add commands for initiating and pausing video
 
 ## MIT License
 
