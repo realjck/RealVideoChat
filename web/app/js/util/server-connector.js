@@ -1,20 +1,20 @@
 /**
- * AblyConnector
+ * ServerConnector
  * for ably.io
  */
 
 let _ably, _channel
 
-const AblyConnector = {};
+const ServerConnector = {};
 /**
  * Connect to Ably and to the specified channel
  * __Use the 'then' method to retrieve the result id, as shown below:"
- * ex.: AblyConnector.connect('xxx', 'xxx').then((id) => app_id = id);__
+ * ex.: ServerConnector.connect('xxx', 'xxx').then((id) => app_id = id);__
  * @param {string} channel 
  * @param {string} apiKey
  * @returns Ably realtime connection id (string)
  */
-AblyConnector.connect = async (apiKey, channel) => {
+ServerConnector.connect = async (apiKey, channel) => {
     _ably = new Ably.Realtime.Promise(apiKey);
     await _ably.connection.once('connected');
     _channel = _ably.channels.get(channel);
@@ -23,11 +23,11 @@ AblyConnector.connect = async (apiKey, channel) => {
 
 /**
  * Create an Event that do something with the received data object
- * __ex.: AblyConnector.addListener('xxx', ((data) => {app_data = data}));__
+ * __ex.: ServerConnector.addListener('xxx', ((data) => {app_data = data}));__
  * @param {string} eventName 
  * @param {function} fn 
  */
-AblyConnector.addListener = (eventName, fn) => {
+ServerConnector.addListener = (eventName, fn) => {
     try {
         _channel.subscribe(eventName, (message) => {
             if (message.connectionId !== _ably.connection.id) {
@@ -41,11 +41,11 @@ AblyConnector.addListener = (eventName, fn) => {
 
 /**
  * Publish an object message to an Event
- * __ex.: AblyConnector.say('xxx', data);__
+ * __ex.: ServerConnector.say('xxx', data);__
  * @param {string} eventName 
  * @param {object} object 
 */
-AblyConnector.say = (eventName, object) => {
+ServerConnector.say = (eventName, object) => {
     try {
         _channel.publish(eventName, object);
     } catch (e) {
@@ -53,4 +53,4 @@ AblyConnector.say = (eventName, object) => {
     }
 }
 
-export {AblyConnector};
+export {ServerConnector};

@@ -1,5 +1,5 @@
 import { loadSettings } from "./util/load-settings.js";
-import { AblyConnector } from './util/ably-connector.js';
+import { ServerConnector } from './util/server-connector.js';
 import { JQueryForm } from "./util/jquery-form.js";
 import { View } from "./view/view.js";
 
@@ -57,20 +57,7 @@ function askRoom() {
   JQueryForm.init('roomname-card', [['roomname', /^\w+$/]], (data) => {
     MR.currentChannel = data.roomname.toLowerCase();
     $("#modal-roomname-dialog").hide();
-    if (window.DEV){
-      askUserName();
-    } else {
-      AblyConnector
-        .connect(window.API_KEY, MR.currentChannel)
-        .then((id) => {
-          MR.user.id = id
-          askUserName();
-        })
-        .catch((e) => {
-          View.toast("** CONNEXION ERROR **", "red");
-          console.error("IOERROR CAN'T CONNECT", e);
-        });
-    }
+    askUserName();
   });
 }
 
@@ -120,20 +107,20 @@ function askUserName() {
  */
 function makePresentation(){
   // user say hello:
-  AblyConnector.say('hello', MR.user);
+  ServerConnector.say('hello', MR.user);
   showPresentationToast(MR.user);
 
   // he registers the users saying welcome in return:
-  AblyConnector.addListener('welcome', (user) => {
+  ServerConnector.addListener('welcome', (user) => {
     if (!MR.users.find(u => u.id === user.id)){
       addOtherUser(user);
     }
   });
 
   // then he registers new users, and greets them with a welcome:
-  AblyConnector.addListener('hello', (user) => {
+  ServerConnector.addListener('hello', (user) => {
     addOtherUser(user);
-    AblyConnector.say('welcome', MR.user);
+    ServerConnector.say('welcome', MR.user);
     showPresentationToast(user);
   })
   function showPresentationToast(user){
