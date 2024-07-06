@@ -8,7 +8,7 @@ channels: Dict[str, Set[WebSocketServerProtocol]] = {}
 names: Dict[WebSocketServerProtocol, str] = {}
 
 
-async def handle_clients(websocket: WebSocketServerProtocol, path: str):
+async def handle_clients(websocket: WebSocketServerProtocol):
     clients.add(websocket)
     try:
         # Receive client's name
