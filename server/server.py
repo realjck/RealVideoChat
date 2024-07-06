@@ -11,23 +11,24 @@ names: Dict[WebSocketServerProtocol, str] = {}
 async def handle_clients(websocket: WebSocketServerProtocol):
     clients.add(websocket)
     try:
-        # Receive client's name
-        name = await websocket.recv()
-        welcome = f"Welcome {name}. Good to see you :)"
-        await websocket.send(welcome)
-        names[websocket] = name
+        # Receive client's name and chosen channel
+        msg_login = await websocket.recv()
 
-        # Receive client's chosen channel
-        channel_name = await websocket.recv()
-        if channel_name not in channels:
-            channels[channel_name] = set()
-        channels[channel_name].add(websocket)
+        if ':' not in msg_login or msg_login.count(':') != 1:
+            error_message = "Error: Message format incorrect. Please use 'user:channel'."
+            await websocket.send(error_message)
+        else:
+            name, channel_name = msg_login.split(':')
+            names[websocket] = name
+            if channel_name not in channels:
+                channels[channel_name] = set()
+            channels[channel_name].add(websocket)
 
-        msg = f"{name} has recently joined us in {channel_name}"
-        await broadcast(msg, channel_name)
+            msg = f"{name} has recently joined us in {channel_name}"
+            await broadcast(msg, channel_name)
 
-        async for message in websocket:
-            await broadcast(message, channel_name, names[websocket] + ": ")
+            async for message in websocket:
+                await broadcast(message, channel_name, names[websocket] + ": ")
 
     except websockets.ConnectionClosed as e:
         print(f"Client {websocket.remote_address} disconnected: {e}")
@@ -36,17 +37,16 @@ async def handle_clients(websocket: WebSocketServerProtocol):
         # Unregister client
         if websocket in clients:
             clients.remove(websocket)
-        msg = f"{names[websocket]} has left the chat"
         if websocket in names:
+            msg = f"{names[websocket]} has left the chat"
             del names[websocket]
-
-        for channel, members in list(channels.items()):
-            if websocket in members:
-                members.remove(websocket)
-                if members:  # Check if the channel still has members
-                    await broadcast(msg, channel)
-                else:
-                    del channels[channel]  # Remove empty channel
+            for channel, members in list(channels.items()):
+                if websocket in members:
+                    members.remove(websocket)
+                    if members:  # Check if the channel still has members
+                        await broadcast(msg, channel)
+                    else:
+                        del channels[channel]  # Remove empty channel
 
 
 async def broadcast(message: str, channel_name: str, prefix: str = ""):
