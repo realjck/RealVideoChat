@@ -1,24 +1,36 @@
 /**
  * ServerConnector
- * for ably.io
  */
 
-let _ably, _channel
-
+let _ws;
+const _events = {};
 const ServerConnector = {};
+
 /**
- * Connect to Ably and to the specified channel
- * __Use the 'then' method to retrieve the result id, as shown below:"
- * ex.: ServerConnector.connect('xxx', 'xxx').then((id) => app_id = id);__
- * @param {string} channel 
- * @param {string} apiKey
- * @returns Ably realtime connection id (string)
+ * Establish Server connexion
  */
-ServerConnector.connect = async (apiKey, channel) => {
-    _ably = new Ably.Realtime.Promise(apiKey);
-    await _ably.connection.once('connected');
-    _channel = _ably.channels.get(channel);
-    return _ably.connection.id;
+ServerConnector.login = (user, channel, callback) => {
+    _ws  = new WebSocket(window.URL);
+    _ws.addEventListener('open', (event) => {
+        console.log('Connected to server');
+        _ws.send(user + ":" + channel);
+        return callback(true);
+    });
+
+    // Send messages when received
+    _ws.addEventListener('message', (event) => {
+        const message = event.data;
+
+        const match = message.match(/:(.*?):/);
+
+        if (match && match[1]) {
+            const fn = match[1].trim();
+            const data = JSON.parse(message.match(/^(?:[^:]*:){2}(.*)$/)[1]);
+            _events[fn](data); // Launch event
+        } else {
+            console.log(message); // Server message
+        }
+    });
 }
 
 /**
@@ -28,15 +40,7 @@ ServerConnector.connect = async (apiKey, channel) => {
  * @param {function} fn 
  */
 ServerConnector.addListener = (eventName, fn) => {
-    try {
-        _channel.subscribe(eventName, (message) => {
-            if (message.connectionId !== _ably.connection.id) {
-                fn(message.data);
-            }
-        });
-    } catch (e) {
-        console.log("IOERROR: SUBSCRIBE to '"+eventName+"'");
-    }
+    _events[eventName] = fn;
 }
 
 /**
@@ -47,7 +51,7 @@ ServerConnector.addListener = (eventName, fn) => {
 */
 ServerConnector.say = (eventName, object) => {
     try {
-        _channel.publish(eventName, object);
+        _ws.send(eventName + ":" + JSON.stringify(object));
     } catch (e) {
         console.log("IOERROR: SAY to '"+eventName+"'", object);
     }

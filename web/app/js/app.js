@@ -23,7 +23,6 @@ const MR = {
   currentChannel : '',
   // App user:
   user : {
-    id : "",// = Ably.realtime.connection.id (when connected)
     name : "", // Name chosen by user
     color : 0 // Color index of userColors chosen by user
   },
@@ -42,7 +41,9 @@ loadSettings('./config/settings',() => {
   // for dev:
   if (window.DEV){
     View.toast('** DEV MODE **', 'darkgreen');
-    makePresentation();
+    MR.user.name='johndoe';
+    MR.currentChannel='dev';
+    ServerConnector.login(MR.user.name, MR.currentChannel, makePresentation);
   } else {
     askRoom();
   }
@@ -98,7 +99,7 @@ function askUserName() {
   JQueryForm.init('username-card', [['username', /^\w+$/]], (data) => {
     MR.user.name = data.username;
     $("#modal-username-dialog").hide();
-    makePresentation();
+    ServerConnector.login(MR.user.name, MR.currentChannel, makePresentation);
   });
 }
 
