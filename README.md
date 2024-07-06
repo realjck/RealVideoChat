@@ -29,9 +29,9 @@ _Instructions to come_
 
 ## Feature Roadmap
 
-- [ ] ~~Real-time chat with Ably API~~
-
 - [X] Build-in Server setup with Docker
+
+- [X] Websockets users connexion with callback
 
 - [ ] Real-time chat with Websockets
      
