@@ -1,5 +1,6 @@
 import asyncio
 import websockets
+import ssl
 from websockets import WebSocketServerProtocol
 from typing import Set, Dict
 
@@ -64,7 +65,11 @@ async def broadcast(message: str, channel_name: str, prefix: str = ""):
 
 
 async def main():
-    async with websockets.serve(handle_clients, "0.0.0.0", 8080):
+    # Créer un contexte SSL
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    ssl_context.load_cert_chain('cert.pem', 'key.pem')
+
+    async with websockets.serve(handle_clients, "0.0.0.0", 8080, ssl=ssl_context):
         print("Server listening on port 8080...")
         await asyncio.Future()  # run forever
 
