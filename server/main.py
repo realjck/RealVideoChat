@@ -64,7 +64,7 @@ async def broadcast(message: str, channel_name: str, prefix: str = ""):
 
 
 async def main():
-    async with websockets.serve(handle_clients, "localhost", 8080):
+    async with websockets.serve(handle_clients, "0.0.0.0", 8080):
         print("Server listening on port 8080...")
         await asyncio.Future()  # run forever
 
