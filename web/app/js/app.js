@@ -67,9 +67,6 @@ function askRoom() {
  */
 function askUserName() {
 
-  // toast
-  View.toast(window.DEV ? 'OFFLINE' : 'CONNECTED TO '+MR.currentChannel.toUpperCase());
-
   // USER NAME
   // ---------
   $("#modal-username-dialog").show();
