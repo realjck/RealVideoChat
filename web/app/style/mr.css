@@ -114,12 +114,15 @@ video {
 }
 
 /* Buttons Color selection: */
-#modal-username-dialog ul {
+#modal-username-dialog ul, .btColorList {
     list-style: none;
     display: flex;
     width: 100%;
     margin-top: 15px;
     margin-left: -10px;
+}
+.btColorList {
+    margin-top: -10px;
 }
 li.btColor {
     width: 22px;

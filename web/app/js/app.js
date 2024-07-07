@@ -106,7 +106,6 @@ function askUserName() {
 function makePresentation(){
   // user say hello:
   ServerConnector.say('hello', MR.user);
-  showPresentationToast(MR.user);
 
   // he registers the users saying welcome in return:
   ServerConnector.addListener('welcome', (user) => {
@@ -146,17 +145,20 @@ function makePresentation(){
     MR.users.push(user);
   }
 
-  // show container:
-  $(".container").show();
+  // init Talk
+  initTalk();
 
-  // init Chat
-  initChat();
+  // init Color change
+  initColorChange();
 
   // next:
   initMedia();
+
+  // show container:
+  $(".container").show();
 }
 
-function initChat() {
+function initTalk() {
 
   // Listen to talk events
   ServerConnector.addListener('talk', (data) => {
@@ -171,6 +173,43 @@ function initChat() {
     obj.user = MR.user;
     ServerConnector.say('talk', obj);
   })
+}
+
+function initColorChange() {
+  activeBtColor();
+  for (let i=0; i<MR.userColors.length; i++){
+    const bt = $(".btColorList li").eq(i);
+    bt[0].n = i;
+    bt.css("background-color", MR.userColors[i]);
+    bt.on("click", (e) => {
+      MR.user.color = $(e.currentTarget)[0].n;
+      ServerConnector.say('color', MR.user); // Send update to other clients
+      activeBtColor();
+    });
+  }
+  function activeBtColor(){
+    $(".btColorList li").removeClass('active')
+        .eq(MR.user.color).addClass('active');
+  }
+
+  // Listener and color update
+  ServerConnector.addListener('color', data => {
+    const userToUpdate = MR.users.findLast(user => user.name === data.name);
+    if (userToUpdate) {
+      userToUpdate.color = data.color;
+    }
+    View.updateSpeechBubbleColor(data.name, MR.userColors[data.color]);
+    // fun message:
+    const fun_msg = [
+      'is glowing up with their new color!',
+      'traded in their old avatar for a new hue!',
+      'is embracing the rainbow with their new avatar!',
+      'has a chameleon-like avatar that keeps changing colors!',
+      'is painting the town with their new avatar!'
+    ];
+    View.toast(data.name + ' ' + fun_msg[Math.floor(fun_msg.length*Math.random())],
+        MR.userColors[data.color]);
+  });
 }
 
 /**

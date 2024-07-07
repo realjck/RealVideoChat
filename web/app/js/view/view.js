@@ -50,7 +50,15 @@ View.speechBubble = (name, color, message, right) => {
     html += message;
     html += '</div>';
 
-    $('.box-container').prepend(html);
+    $('.box-container').prepend(html).children().first().hide().show(350);
+}
+
+View.updateSpeechBubbleColor = (username, color) => {
+    $('.speech-bubble-user').each(function() {
+       if ($(this).text().trim() === username) {
+           $(this).css('background-color', color);
+       }
+    });
 }
 
 export {View};
