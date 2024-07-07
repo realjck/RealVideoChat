@@ -35,13 +35,13 @@ const MR = {
  */
 loadSettings('./config/settings',() => {
   console.log('** MEDIA ROOM v'+window.VERSION+' **');
-  console.log(!window.DEV ? 'Online mode'
-    : 'Offline for development');
+  console.log(!window.DEV ? 'Production mode'
+    : 'Quick login johndoe:dev');
   $("h1").html("MediaRoom v"+window.VERSION);
   // for dev:
   if (window.DEV){
-    View.toast('** DEV MODE **', 'darkgreen');
     MR.user.name='johndoe';
+    MR.user.color=2;
     MR.currentChannel='dev';
     ServerConnector.login(MR.user.name, MR.currentChannel, makePresentation);
   } else {
@@ -149,8 +149,28 @@ function makePresentation(){
   // show container:
   $(".container").show();
 
+  // init Chat
+  initChat();
+
   // next:
   initMedia();
+}
+
+function initChat() {
+
+  // Listen to talk events
+  ServerConnector.addListener('talk', (data) => {
+    const isOther = data.user.name !== MR.user.name || data.user.color !== MR.user.color;
+    View.speechBubble(data.user.name, MR.userColors[data.user.color], data.message, isOther);
+  });
+
+  // talk with talk-area form
+  JQueryForm.init('talk-area', [['message', /./]], (data) => {
+    const obj = {};
+    obj.message = data.message;
+    obj.user = MR.user;
+    ServerConnector.say('talk', obj);
+  })
 }
 
 /**

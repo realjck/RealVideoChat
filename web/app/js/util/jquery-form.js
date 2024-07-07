@@ -19,8 +19,9 @@ JQueryForm.init = (form, inputs, callback) => {
 
     // keypress enter on inputs:
     inputs.forEach(input => {
-        $("input#"+input[0]).on("keypress", (event) => {
+        $("#"+input[0]).on("keypress", (event) => {
             if (event.which === 13){
+                event.preventDefault();
                 getDataFromInput();
             }
         });
@@ -36,7 +37,7 @@ JQueryForm.init = (form, inputs, callback) => {
     function getDataFromInput() {
         let formIsValid = true;
         inputs.forEach(input => {
-            const element = $("input#"+input[0]);
+            const element = $("#"+input[0]);
             element.removeClass('invalid');
             const val = element.val().trim();
             data[input[0]] = val;
@@ -49,6 +50,9 @@ JQueryForm.init = (form, inputs, callback) => {
             }
         });
         if (formIsValid){
+            inputs.forEach(input => {
+                $("#"+input[0]).val("");
+            });
             callback(data);
         }
     }
