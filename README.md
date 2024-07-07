@@ -11,9 +11,11 @@ A minimal and responsive media chat room
 
 ## About
 
-This application is composed of two parts, server and web, intended to be used via Docker container on any Linux server.
+This application is composed of two parts, server and web, intended to be used via Docker container on any Linux server supporting SSL.
 
-It uses a secure websockets system for the connection. The server part allows users to log into the desired room and join other people for real-time communication.
+It uses a secure websockets for the connection (`wss://`). The server part allows users to log into the desired room and join other people for real-time communication.
+
+### [Demo at mediaroom.pxly.fr](https://mediaroom.pxly.fr)
 
 ## Installation
 
@@ -25,7 +27,9 @@ It uses a secure websockets system for the connection. The server part allows us
 
 ## Usage
 
-_Instructions to come_
+Please refer to the README of the corresponding web and server folders.
+
+For the web part, you are free to mount the files via the Dockerfile or to place the files on any web server. Also if you want to run the server part without Docker you can simply run main.py with an alias of your keys, this will listen on port 8080.
 
 ## Feature Roadmap
 
@@ -33,7 +37,7 @@ _Instructions to come_
 
 - [X] Websockets users connexion with callback
 
-- [ ] Real-time chat with Websockets
+- [X] Real-time chat with Websockets
      
 - [ ] Extra Media Support: Shaka Player implementation
 
