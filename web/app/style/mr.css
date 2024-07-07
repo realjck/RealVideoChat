@@ -171,7 +171,7 @@ li.btColor.active {
     width: 75%;
     border-radius: 15px;
     color: #ccc;
-    margin: 0 0 15px 0;
+    margin: 0 0 15px 15px;
 }
 .speech-bubble.right {
     margin-left: auto;
