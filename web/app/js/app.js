@@ -165,7 +165,7 @@ function initChat() {
   });
 
   // talk with talk-area form
-  JQueryForm.init('talk-area', [['message', /./]], (data) => {
+  JQueryForm.init('talk-area', [['message', /^[^<>]+$/]], (data) => {
     const obj = {};
     obj.message = data.message;
     obj.user = MR.user;
