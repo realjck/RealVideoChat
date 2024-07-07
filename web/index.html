@@ -3,10 +3,10 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MediaRoom</title>
+    <meta name="description" content="📺 A minimal and responsive media chat room">
     <link rel="icon" type="image/svg+xml" href="./app/images/mascot.svg">
     <link href="./app/style/mini.css/mini-dark-pro.css" rel="stylesheet" />
     <link href="./app/style/mr.css" rel="stylesheet" />
-    <meta name="robots" content="noindex, nofollow">
   </head>
   <body>
     <!-- MAIN CONTAINER: -->
@@ -14,15 +14,19 @@
       <!-- Left Panel: -->
       <div class="left-panel">
         <div class="high-panel">
-          <h1 class="small">MediaRoom-v</h1>
-          <ul class="btColorList">
+          <div class="inline">
+            <a class="small" href="https://github.com/realjck/media-room" target="_blank">Project on Github</a>
+            <h1 class="small">MediaRoom-v</h1>
+          </div>
+          <h2 class="small">Room: <span id="room-name"></span></h2>
+          <h2 class="small">Choose your avatar's color:</h2>
+            <ul class="btColorList">
             <li class="btColor"></li>
             <li class="btColor"></li>
             <li class="btColor"></li>
             <li class="btColor"></li>
             <li class="btColor"></li>
           </ul>
-          <h2 class="small">Room: <span id="room-name"></span></h2>
         </div>
         <!-- Left Panel - Messages box container -->
         <div class="box-container">
