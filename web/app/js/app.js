@@ -151,11 +151,15 @@ function makePresentation(){
   // init Color change
   initColorChange();
 
+  // show room name
+  $("#room-name").html(MR.currentChannel);
+
   // next:
   initMedia();
 
   // show container:
   $(".container").show();
+  $("#message").focus();
 }
 
 function initTalk() {

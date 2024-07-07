@@ -86,6 +86,7 @@ h1 {
     display: flex;
     height: 100vh;
     overflow: hidden;
+    padding: 0;
 }
 .divider {
     width: 20px;
@@ -122,10 +123,11 @@ video {
     margin-left: -10px;
 }
 .btColorList {
-    margin-top: -10px;
+    margin-top: -5px;
 }
 li.btColor {
     width: 22px;
+    min-width: 22px;
     height: 22px;
     background-color: orange;
     margin-right: 10px;
@@ -192,4 +194,18 @@ li.btColor.active {
     font-size: x-small;
     color: #888;
     margin-left: 5px;
+}
+
+/* High Panel */
+.high-panel {
+    background-color: #303030;
+}
+.high-panel h2 {
+    margin-top: -5px;
+    margin-bottom: 5px;
+    font-size: x-small;
+    color: #B0B0B0;
+}
+#room-name {
+    color: #e0e0e0;
 }
