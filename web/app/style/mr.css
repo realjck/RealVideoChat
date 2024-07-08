@@ -216,6 +216,10 @@ li.btColor.active {
 .high-panel {
     background-color: #303030;
 }
+.high-panel h1 {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
 .high-panel h2 {
     margin-top: -5px;
     margin-bottom: 5px;
@@ -242,4 +246,15 @@ li.btColor.active {
 
 #users-container .speech-bubble-user {
     margin: 5px;
+}
+
+#toggle-high-panel {
+    margin-top: -20px;
+    cursor: pointer;
+}
+
+.hb {
+    width: 25px;
+    margin-left: auto;
+    display: block;
 }

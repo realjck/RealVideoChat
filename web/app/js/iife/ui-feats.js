@@ -1,4 +1,7 @@
 $(document).ready(() => {
+
+    // PAGE SPIT RESIZER
+    // -----------------
     let isResizing = false;
     let lastDownX = 0;
     $('.divider').mousedown((e) => {
@@ -16,5 +19,18 @@ $(document).ready(() => {
         }
     }).mouseup(() => {
         isResizing = false;
+    });
+
+    // TOGGLE HIGH PANEL
+    // -----------------
+    let isHighPanelOpen = true;
+    $("#toggle-high-panel").on('click', (e) => {
+       if (isHighPanelOpen) {
+           isHighPanelOpen = false;
+           $("#hiding-zone").hide(350);
+       } else {
+           isHighPanelOpen = true;
+           $("#hiding-zone").show(350);
+       }
     });
 });
