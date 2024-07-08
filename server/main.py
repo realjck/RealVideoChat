@@ -20,16 +20,22 @@ async def handle_clients(websocket: WebSocketServerProtocol):
             await websocket.send(error_message)
         else:
             name, channel_name = msg_login.split(':')
-            names[websocket] = name
-            if channel_name not in channels:
-                channels[channel_name] = set()
-            channels[channel_name].add(websocket)
 
-            msg = f"{name} has recently joined us in {channel_name}"
-            await broadcast(msg, channel_name)
+            if not any(name == val for val in names.values()):
+                names[websocket] = name
+                if channel_name not in channels:
+                    channels[channel_name] = set()
+                channels[channel_name].add(websocket)
 
-            async for message in websocket:
-                await broadcast(message, channel_name, names[websocket] + ": ")
+                msg = f"{name} has recently joined in {channel_name}"
+                await broadcast(msg, channel_name)
+
+                async for message in websocket:
+                    await broadcast(message, channel_name, names[websocket] + ": ")
+
+            else:
+                error_message = f">User {name} already exists in {channel_name}"
+                await websocket.send(error_message)
 
     except websockets.ConnectionClosed as e:
         print(f"Client {websocket.remote_address} disconnected: {e}")
@@ -39,7 +45,7 @@ async def handle_clients(websocket: WebSocketServerProtocol):
         if websocket in clients:
             clients.remove(websocket)
         if websocket in names:
-            msg = f"{names[websocket]} has left the chat"
+            msg = f"!{names[websocket]}"
             del names[websocket]
             for channel, members in list(channels.items()):
                 if websocket in members:
