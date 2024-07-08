@@ -104,22 +104,19 @@ function askUserName() {
  * SEND AND ACTIVE GREETINGS
  */
 function makePresentation(){
-  // user say hello:
-  ServerConnector.say('hello', MR.user);
 
-  // he registers the users saying welcome in return:
+  // Register users saying welcome in return:
   ServerConnector.addListener('welcome', (user) => {
-    if (!MR.users.find(u => u.id === user.id)){
-      addOtherUser(user);
-    }
+    addOtherUser(user);
   });
 
-  // then he registers new users, and greets them with a welcome:
+  // Register and answer to users saying hello:
   ServerConnector.addListener('hello', (user) => {
     addOtherUser(user);
     ServerConnector.say('welcome', MR.user);
     showPresentationToast(user);
   })
+
   function showPresentationToast(user){
     // fun message:
     const fun_msg = [
@@ -141,9 +138,15 @@ function makePresentation(){
         MR.userColors[user.color]
     );
   }
+  
   function addOtherUser(user){
-    MR.users.push(user);
+    if (!MR.users.find(u => u.name === user.name)) {
+      MR.users.push(user);
+    }
   }
+
+  // user say hello:
+  ServerConnector.say('hello', MR.user);
 
   // init Talk
   initTalk();
