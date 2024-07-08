@@ -45,23 +45,6 @@ loadSettings('./config/settings',() => {
     $(".container").hide();
     askUserName();
   });
-  ServerConnector.addListener('logout', username => {
-    const col = MR.users.findLast(user => user.name === username).color;
-    MR.users = MR.users.filter(user => user.name !== username);
-    const fun_msg = [
-      'vanish from the conversation',
-      'exit the discussion',
-      'fade from the chatroom',
-      'sneak out of the conversation',
-      'teleport out of the chat',
-      'drift out of the discussion',
-      'phase out of the conversation',
-      'exit stage left from the dialogue',
-      'saunter out of the room',
-      'vanish into thin air from the chat'
-    ];
-    View.toast(username + ' ' + fun_msg[Math.floor(fun_msg.length*Math.random())], MR.userColors[col]);
-  });
   
   // for dev:
   if (window.DEV){
@@ -167,8 +150,29 @@ function makePresentation(){
   function addOtherUser(user){
     if (!MR.users.find(u => u.name === user.name)) {
       MR.users.push(user);
+      View.addUser(user.name, MR.userColors[user.color]);
     }
   }
+
+  // add logouts of people
+  ServerConnector.addListener('logout', username => {
+    const col = MR.users.findLast(user => user.name === username).color;
+    MR.users = MR.users.filter(user => user.name !== username);
+    View.removeUser(username);
+    const fun_msg = [
+      'vanish from the conversation',
+      'exit the discussion',
+      'fade from the chatroom',
+      'sneak out of the conversation',
+      'teleport out of the chat',
+      'drift out of the discussion',
+      'phase out of the conversation',
+      'exit stage left from the dialogue',
+      'saunter out of the room',
+      'vanish into thin air from the chat'
+    ];
+    View.toast(username + ' ' + fun_msg[Math.floor(fun_msg.length*Math.random())], MR.userColors[col]);
+  });
 
   // user say hello:
   ServerConnector.say('hello', MR.user);

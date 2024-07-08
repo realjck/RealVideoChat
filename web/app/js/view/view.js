@@ -61,4 +61,17 @@ View.updateSpeechBubbleColor = (username, color) => {
     });
 }
 
+View.addUser = (username, color) => {
+    const html = '<div class="speech-bubble-user" style="background-color:' + color + '">' + username + '</div>';
+    $("#users-container").append(html);
+}
+
+View.removeUser = (username) => {
+    $('#users-container .speech-bubble-user').each(function() {
+        if ($(this).text().trim() === username) {
+            $(this).remove();
+        }
+    });
+}
+
 export {View};

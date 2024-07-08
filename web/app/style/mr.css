@@ -225,3 +225,21 @@ li.btColor.active {
 #room-name {
     color: #e0e0e0;
 }
+
+.users-panel {
+    background-color: #282828;
+    padding: 5px 0 5px 0;
+}
+
+.users-panel h2 {
+    margin-top: 5px;
+}
+
+#users-container {
+    display: ruby;
+    padding: 0 5px;
+}
+
+#users-container .speech-bubble-user {
+    margin: 5px;
+}
