@@ -38,6 +38,31 @@ loadSettings('./config/settings',() => {
   console.log(!window.DEV ? 'Production mode'
     : 'Quick login johndoe:dev');
   $("h1").html("MediaRoom v"+window.VERSION);
+
+  // Prepare for alreadyTaken and logout
+  ServerConnector.addListener('alreadyTaken', message => {
+    View.toast(message);
+    $(".container").hide();
+    askUserName();
+  });
+  ServerConnector.addListener('logout', username => {
+    const col = MR.users.findLast(user => user.name === username).color;
+    MR.users = MR.users.filter(user => user.name !== username);
+    const fun_msg = [
+      'vanish from the conversation',
+      'exit the discussion',
+      'fade from the chatroom',
+      'sneak out of the conversation',
+      'teleport out of the chat',
+      'drift out of the discussion',
+      'phase out of the conversation',
+      'exit stage left from the dialogue',
+      'saunter out of the room',
+      'vanish into thin air from the chat'
+    ];
+    View.toast(username + ' ' + fun_msg[Math.floor(fun_msg.length*Math.random())], MR.userColors[col]);
+  });
+  
   // for dev:
   if (window.DEV){
     MR.user.name='johndoe';
