@@ -4,7 +4,7 @@
 */
 
 :root {
-    --universal-border-radius: 0.75rem;
+    --universal-border-radius: 8px;
 }
 
 /* Better modal: */
@@ -15,7 +15,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border: 25px solid var(--card-back-color);
-    border-radius: 25px;
+    border-radius: 20px;
     max-height: inherit !important;
 }
 .dialog-title {
@@ -183,11 +183,11 @@ li.btColor.active {
 }
 .speech-bubble {
     background-color: #121212;
-    padding: 15px;
+    padding: 5px 15px 15px 15px;
     width: 75%;
-    border-radius: 15px;
+    border-radius: 8px;
     color: #ccc;
-    margin: 0 0 15px 15px;
+    margin: 0 0 10px 15px;
 }
 .speech-bubble.right {
     margin-left: auto;
