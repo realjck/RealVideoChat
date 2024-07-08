@@ -21,7 +21,8 @@ async def handle_clients(websocket: WebSocketServerProtocol):
         else:
             name, channel_name = msg_login.split(':')
 
-            if not any(name == val for val in names.values()):
+            # check if there's not another user with same name in the channel:
+            if not any(name == val for val in (names[member] for member in channels.get(channel_name, []))):
                 names[websocket] = name
                 if channel_name not in channels:
                     channels[channel_name] = set()
