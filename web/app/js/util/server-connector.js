@@ -28,7 +28,14 @@ ServerConnector.login = (user, channel, callback) => {
             const data = JSON.parse(message.match(/^(?:[^:]*:){2}(.*)$/)[1]);
             _events[fn](data); // Launch event
         } else {
-            console.log(message); // Server message
+            // Server messages
+            if (message.substring(0,1) === '>') {
+                _events['alreadyTaken'](message.substring(1));
+            } else if (message.substring(0,1) === '!') {
+                _events['logout'](message.substring(1));
+            } else {
+                console.log(message);
+            }
         }
     });
 }
